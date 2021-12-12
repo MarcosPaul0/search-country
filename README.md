@@ -2,7 +2,7 @@
 
 ## Instalando dependências
 
-<p>Primeiro instala as dependências com o comando:</p>
+<p>Primeiro instale as dependências com o comando:</p>
 <code>yarn install</code> <span>ou</span> <code>npm install</code>
 
 ## Rodar o projeto
