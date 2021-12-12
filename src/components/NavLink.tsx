@@ -13,7 +13,7 @@ export function NavLink({path, text}: NavLinkProps) {
       <Link to={path} className={`mt-8 sm:mt-0 pt-5 leading-6 font-bold transition duration-200 hover:text-gray-300`}>
         {text}
       </Link>
-      {pathname === path && <div className={`mt-4 sm:mt-0 h-1 w-full rounded-t bg-gray-400`}></div>}
+      {pathname === path && <div className={`mt-4 h-1 w-full rounded-t bg-gray-400`}></div>}
     </div>
   )
 }

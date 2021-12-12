@@ -1,33 +1,40 @@
-import { useState, FormEvent } from 'react';
-import api from '../api';
-import searchImg from '../assets/search.svg';
+import { useState, FormEvent, useContext } from 'react';
+import { BiSearchAlt2 } from 'react-icons/bi';
 
+import { SearchCountriesContext } from '../contexts/searchCountriesContext';
+import { FavoriteContext } from '../contexts/favoriteContext';
+
+import { ToastContainer } from 'react-toastify';
 import { CountryCard } from '../components/CountryCard';
 
-interface Currency {
-  name: string;
-  symbol: string;
-}
-
-interface CountryCardProps {
-  common: string;
-  official: string;
+interface Country {
+  translations: {
+    por: {
+      common: string;
+      official: string;
+    }
+  };
   capital: string;
-  languages: Object;
+  languages: any;
   region: string;
   population: number;
-  currencies: Currency;
-  svg: string;
+  currencies: any;
+  flags: {
+    svg: string;
+    png: string;
+  };
 }
 
 export function Home() {
-  const [select, setSelect] = useState('name');
+  const [select, setSelect] = useState('translation');
   const [search, setSearch] = useState('');
-  const [data, setData] = useState<CountryCardProps | null>(null);
+  const { countries, searchCountries } = useContext(SearchCountriesContext);
+
+  const { findCountry } = useContext(FavoriteContext);
 
   function translateToPlaceholder() {
     switch(select) {
-      case 'name':
+      case 'translation':
         return 'nome';
       case 'currency':
         return 'moeda';
@@ -41,14 +48,11 @@ export function Home() {
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    const result = await api.get(`${select}/${search}`);
-
-    setData(result.data);
-    console.log(data);
+    searchCountries({ type: select, search });
   }
 
   return (
-    <main className={`flex flex-col justify-center items-center w-full`}>
+    <main className={`flex flex-col items-center w-full bg-gray-100 pb-4`}>
       <form className={`flex flex-col gap-2 sm:gap-0 sm:flex-row mt-16`}>
         <select 
           defaultValue={select}
@@ -74,11 +78,34 @@ export function Home() {
             className={`px-4 py-2 bg-gray-800 rounded-r-md`}
             onClick={handleSubmit}
           >
-            <img src={searchImg} alt="Lupa" />
+            <BiSearchAlt2 size={30} color='#F8FAFC' />
           </button>
+          <ToastContainer />
         </div>
       </form>
-      
+      {countries.length > 0 ?
+        countries.map((country: Country) => {
+          const countryFormatted = {
+            translations: {
+              por: country.translations.por
+            },
+            capital: country.capital,
+            currencies: country.currencies,
+            flags: country.flags,
+            languages: country.languages,
+            population: country.population,
+            region: country.region
+          }
+
+          return (
+            <CountryCard 
+              key={country.translations.por.common} 
+              country={countryFormatted}
+              isFavorite={findCountry(countryFormatted)}
+            />     
+          )
+        })
+      : ''}
     </main>
   )
 }
