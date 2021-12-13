@@ -65,7 +65,10 @@ export function CountryCard({ country, isFavorite }: CountryCardProps) {
         className={`h-40 w-56 sm:w-72 sm:h-48 rounded-2xl`}
       />
 
-      <div className={`flex flex-col mt-4 sm:mt-0 sm:ml-4 w-56 sm:w-80`}>
+      <div className={`
+        flex flex-col mt-4 w-56 
+        sm:mt-0 sm:ml-4 sm:w-80
+      `}>
         <header className={`flex justify-between`}>
           <h1 className={`font-bold text-3xl`}>{country.translations.por.common}</h1>
             <button onClick={handleFavorite}>

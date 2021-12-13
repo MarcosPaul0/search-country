@@ -28,8 +28,8 @@ interface Country {
 export function Home() {
   const [select, setSelect] = useState('translation');
   const [search, setSearch] = useState('');
+  
   const { countries, searchCountries } = useContext(SearchCountriesContext);
-
   const { findCountry } = useContext(FavoriteContext);
 
   function translateToPlaceholder() {
@@ -57,21 +57,27 @@ export function Home() {
         <select 
           defaultValue={select}
           onChange={e => setSelect(e.target.value)}
-          className={`px-4 py-2 bg-gray-800 text-gray-50 sm:w-24 rounded-md sm:rounded-l-md sm:rounded-r-none`}
+          className={`
+            px-4 py-2 bg-gray-800 text-gray-50 sm:w-24 
+            rounded-md sm:rounded-l-md sm:rounded-r-none
+          `}
         >
           <option value="translation">nome</option>
           <option value="currency">moeda</option>
           <option value="lang">língua</option>
           <option value="region">região</option>
         </select>
+        
         <div className={`flex`}>
           <input 
             type="text" 
             placeholder={`Buscar por ${translateToPlaceholder()}`}
             onChange={e => setSearch(e.target.value)} 
-            className={`w-52 sm:w-96 px-4 py-2 transition duration-200
+            className={`
+              w-52 sm:w-96 px-4 py-2 transition duration-200
               bg-gray-200 text-gray-900 border border-gray-700 focus:bg-gray-100 
-              rounded-l-md sm:rounded-none outline-none`}
+              rounded-l-md sm:rounded-none outline-none
+            `}
           />
           <button 
             type="submit"

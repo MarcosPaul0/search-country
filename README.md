@@ -1,4 +1,5 @@
 # Search Country
+<p>Esse projeto é um buscador de países. Ele permite buscar informações de países po meio do <strong>nome, moeda, língua e região</strong>. Além disso é possível favoritá-los.</p>
 
 ## Instalando dependências
 

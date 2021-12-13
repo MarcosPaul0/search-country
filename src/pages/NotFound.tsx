@@ -1,7 +1,7 @@
 export function NotFound() {
   return (
-    <main>
-      <p>Não tem nada aqui. 😁</p>
+    <main className={`flex justify-center items-center h-full`}>
+      <h1 className={`text-lg font-bold`}>Não tem nada aqui 😁</h1>
     </main>
   );
 }

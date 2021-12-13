@@ -39,6 +39,7 @@ export const SearchCountriesContext = createContext({} as AuthContextData);
 
 export function SearchCountriesContextProvider({children}: SearchCountriesContextProviderProps) {
   const [countries, setCountries] = useState<Country[]>([]);
+  
   const { errorNotify } = useNotify();
 
   async function searchCountries({type, search}: SearchCountriesRequest) {

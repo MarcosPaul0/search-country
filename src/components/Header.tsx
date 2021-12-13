@@ -11,6 +11,7 @@ export function Header() {
       items-center bg-gray-800 text-gray-50`
     }>
       <img src={logoImg} alt="logo" className={`mt-1 sm:mt-0`} />
+      
       <nav className={`flex gap-20 h-full`}>
         <NavLink path="/" text="Início" />
         <NavLink path="/favorites" text="Favoritos" />

@@ -60,7 +60,6 @@ export function FavoriteContextProvider({children}: FavoriteContextProviderProps
         return true;
       }
     }
-
     return false;
   }
 
