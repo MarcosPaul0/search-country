@@ -55,12 +55,11 @@ export function FavoriteContextProvider({children}: FavoriteContextProviderProps
   }
 
   function findCountry(country: Country): boolean {
-    for(let i = 0; i < favorites.length; i++) {
-      if(country.translations.por.common === favorites[i].translations.por.common) {
-        return true;
-      }
-    }
-    return false;
+    const search = favorites.find(currentCountry => 
+      country.translations.por.common === currentCountry.translations.por.common
+    );
+
+    return !!search;
   }
 
   useEffect(() => {
